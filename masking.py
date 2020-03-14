@@ -18,20 +18,30 @@ cv2.imshow("Original", image)
 # and mask pixels with a value of 255 are allowed to be kept. For example,
 # let's construct a rectangular mask that displays only the person in
 # the image
-mask = np.zeros(image.shape[:2], dtype="uint8")
-cv2.rectangle(mask, (0, 90), (290, 450), 255, -1)
-cv2.imshow("Mask", mask)
+# mask = np.zeros(image.shape[:2], dtype="uint8")
+# cv2.rectangle(mask, (0, 90), (290, 450), 255, -1)
+# cv2.imshow("Mask", mask)
 
-# Apply our mask -- notice how only the person in the image is cropped out
-masked = cv2.bitwise_and(image, image, mask=mask)
-cv2.imshow("Mask Applied to Image", masked)
-cv2.waitKey(0)
+# # Apply our mask -- notice how only the person in the image is cropped out
+# masked = cv2.bitwise_and(image, image, mask=mask)
+# cv2.imshow("Mask Applied to Image", masked)
+# cv2.waitKey(0)
 
-# Now, let's make a circular mask with a radius of 100 pixels and apply the
-# mask again
+# # Now, let's make a circular mask with a radius of 100 pixels and apply the
+# # mask again
+# mask = np.zeros(image.shape[:2], dtype="uint8")
+# cv2.circle(mask, (145, 200), 100, 255, -1)
+# masked = cv2.bitwise_and(image, image, mask=mask)
+# cv2.imshow("Mask", mask)
+# cv2.imshow("Mask Applied to Image", masked)
+# cv2.waitKey(0)
+
+# 2. Question
+# What is the correct code to draw a 10 x 10 square mask centered at coordinates (x, y)?
+(h, w) = image.shape[:2]
+(cX, cY) = (w / 2, h / 2)
+
 mask = np.zeros(image.shape[:2], dtype="uint8")
-cv2.circle(mask, (145, 200), 100, 255, -1)
-masked = cv2.bitwise_and(image, image, mask=mask)
+cv2.rectangle(mask, (cX - 10, cY - 10), (cX + 10, cY + 10), 255, -1)
+# cv2.rectangle(mask, (0, 90), (290, 450), 255, -1)
 cv2.imshow("Mask", mask)
-cv2.imshow("Mask Applied to Image", masked)
-cv2.waitKey(0)
